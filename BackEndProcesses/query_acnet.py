@@ -7,7 +7,7 @@ import sys
 acnet_webString = 'http://www-bd.fnal.gov/cgi-bin/acl.pl?acl=logger_get/start='
 
 # output file name
-acnet_results = "/home/daq/2023_04_ETL_ACLGAD/JARVIS/SlowControl/acnet_buffer.txt"
+acnet_results = "/home/daq/2024_05_SNSPD_FCFD_ETL/JARVIS/SlowControl/acnet_buffer.txt"
 
 # Function to construct URL and write results to text file
 def get_acnet_data(T1, T2, device):

@@ -30,15 +30,15 @@ if isLPC:
 
 ################### Run Table Information #################
 MyKey = '' #Read MyKey from key file in RecoProcesses
-BaseID = 'appNwYbGkiBtcgitk'
-RunTableName = 'tblcsb1YfMaGZWJ6k'
-SensorTableName = 'tblaidSmoXwEgaDGR'
-ConfigTableName = 'tblp8IymWQNqR76M6'
-KeySightScopeConfigTableName = 'tblEVnCB9sxOVa0CI'
-LecroyScopeConfigTableName = 'tblX3qJuSIu3MGRFP'
-TOFHIRConfigTableName = 'tbloAWvktLvKZN6lP'
-CAENConfigTableName = 'tblt1TOv32NN9juyJ'
-VMEConfigTableName = 'tblOApmJcG6CRd0pr'
+BaseID = 'appGZS0BMrLSbYaEK'
+RunTableName = 'tbl5V5QTHVk5YEBhK'
+SensorTableName = 'tbl3L7HhQ6G3fSvRh'
+ConfigTableName = 'tbliBCnhoZXPQPYXw'
+KeySightScopeConfigTableName = 'tblxohrwBBHdUSSN8'
+LecroyScopeConfigTableName = 'tblQwkypkREsLoJQf'
+TOFHIRConfigTableName = 'tblh3QkfVUF9YvYwf'
+CAENConfigTableName = 'tblmuNDqvbXc81mJ9'
+VMEConfigTableName = 'tblH3jbEEPg1QVSAR'
 
 CurlBaseCommandWithoutTable = 'https://api.airtable.com/v0/%s' % (BaseID)
 CurlBaseCommand = 'https://api.airtable.com/v0/%s/%s' % (BaseID, RunTableName)
@@ -65,7 +65,7 @@ ResultTrackFileNameAfterRunNumberSlow = '_CMSTiming_SlowTriggerStream_converted.
 ResultTrackFileNameAfterRunNumberFast = '_CMSTiming_FastTriggerStream_converted.root'
 
 ############## For timingdaq02 ############
-BaseDirName = '2023_04_ETL_ACLGAD'
+BaseDirName = '2024_05_SNSPD_FCFD_ETL'
 BaseTestbeamDir = '/home/daq/{}/'.format(BaseDirName) 
 if isLPC:
     if 'rheller' in user:
@@ -83,7 +83,6 @@ LocalSSH = 'daq@timingdaq01.dhcp.fnal.gov'
 EnvSetupPath = '/home/daq/setup.sh' ############### Remember to change ProcessExec accordingly
 EnvSetupPath2 = '/home/daq/otsdaq/setup_ots.sh' ############### Remember to change ProcessExec accordingly
 TimingDAQDir = '%sTimingDAQ/'%BaseTestbeamDir
-#TimingDAQDir = '/home/daq/LecroyControl/HitCounter/' ### HACK FOR LONG ACQ
 CondorDir = '%sCondor/'%BaseTestbeamDir
 TOFHIRRecoDir = '/uscms/home/rheller/nobackup/sw_daq_tofhir_v1/build/'
 TOFHIRConfigDir = '/uscms/home/rheller/nobackup/2019_04_April_CMSTiming/TOFHIR/ConfigArchive/'

@@ -264,6 +264,7 @@ def GetDigiFromConfig(ConfigurationNumber, Debug, MyKey):
     response = am.requests.get(CurlBaseCommand  + '?filterByFormula=' + FilterByFormula, headers=headers)
     ResponseDict = am.ast.literal_eval(response.text)
     if Debug: return ResponseDict, FilterByFormula
+    print(ResponseDict)
     ListOfFields = ResponseDict["records"][0]['fields'].keys()
     for k , Digitizer in am.DigitizerDict.items():
          if any(Digitizer in fields for fields in ListOfFields):
