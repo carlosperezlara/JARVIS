@@ -271,6 +271,9 @@ def prepareJDL(PID,digitizer_key,run,CMD,frequency=0):
     #   config = CMD.split("--config_file=")[1].split()[0].replace(am.TimingDAQDir,am.eosBaseDir+"condor/")
 	# 	arguments = " ".join([inputfile,tracksfile,config,outputfile])
 
+	if not os.path.exists(am.CondorDir+"jdl"):os.makedirs(am.CondorDir+"jdl")	
+	if not os.path.exists(am.CondorDir+"exec"):os.makedirs(am.CondorDir+"exec")	
+	if not os.path.exists(am.CondorDir+"logs"):os.makedirs(am.CondorDir+"logs")	
 	jdlfile = am.CondorDir+"jdl/condor_"+procname+"_"+str(digitizer_key)+"_"+str(PID)+"_"+str(run)+".jdl"
 	exec_file = am.CondorDir+"exec/condor_"+procname+"_"+str(digitizer_key)+"_"+str(PID)+"_"+str(run)+".sh"
 	if frequency!=0:
