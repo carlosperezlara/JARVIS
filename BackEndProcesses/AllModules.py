@@ -30,15 +30,16 @@ if isLPC:
 
 ################### Run Table Information #################
 MyKey = '' #Read MyKey from key file in RecoProcesses
-BaseID = 'appGZS0BMrLSbYaEK'
-RunTableName = 'tbl5V5QTHVk5YEBhK'
-SensorTableName = 'tbl3L7HhQ6G3fSvRh'
-ConfigTableName = 'tbliBCnhoZXPQPYXw'
-KeySightScopeConfigTableName = 'tblxohrwBBHdUSSN8'
-LecroyScopeConfigTableName = 'tblQwkypkREsLoJQf'
-TOFHIRConfigTableName = 'tblh3QkfVUF9YvYwf'
-CAENConfigTableName = 'tblmuNDqvbXc81mJ9'
-VMEConfigTableName = 'tblH3jbEEPg1QVSAR'
+BaseID = 'app8RfBsVQci7t5t9'
+RunTableName = 'tblxNsrKQkLvU9w69'
+SensorTableName = 'tblvDui8Zv7tbnqGG'
+ConfigTableName = 'tblKtZY8xoofMkTMV'
+KeySightScopeConfigTableName = 'tblZgE2nK08DQnNCx'
+LecroyScopeConfigTableName = 'tblioH9gtg5SHTEFE'
+TOFHIRConfigTableName = 'tblJVdV64j6zU0TlE'
+CAENConfigTableName = 'tblOmaehEAoC4whyy'
+VMEConfigTableName = 'tbl9VGMvNeHrMqNpg'
+
 
 CurlBaseCommandWithoutTable = 'https://api.airtable.com/v0/%s' % (BaseID)
 CurlBaseCommand = 'https://api.airtable.com/v0/%s/%s' % (BaseID, RunTableName)
@@ -65,7 +66,7 @@ ResultTrackFileNameAfterRunNumberSlow = '_CMSTiming_SlowTriggerStream_converted.
 ResultTrackFileNameAfterRunNumberFast = '_CMSTiming_FastTriggerStream_converted.root'
 
 ############## For timingdaq02 ############
-BaseDirName = '2024_05_SNSPD_FCFD_ETL'
+BaseDirName = '2024_05_FNAL_ETL'
 BaseTestbeamDir = '/home/daq/{}/'.format(BaseDirName) 
 if isLPC:
     if 'rheller' in user:
@@ -178,7 +179,7 @@ TwoStageRecoDigitizers = {
                                            'ConfigFileBasePath'     : '%sLecroyScope_' % (ConfigFileBasePath),
                                            'DatToROOTExec'          : 'NetScopeStandaloneDat2Root', 
                                            'ConversionCMD'          : 'python %s/Reconstruction/conversion.py --runNumber ' % (LecroyScopeControlDir), 
-                                           'RawConversionLocalPath' : '/home/daq/LecroyMount/',
+                                           'RawConversionLocalPath' : '/home/daq/LecroyMount171/',
                                            'RawTimingDAQLocalPath'  : '%sLecroyScope/RecoData/ConversionRECO/'  % (BaseTestbeamDir),
                                            'RecoTimingDAQLocalPath' : '%sLecroyScope/RecoData/TimingDAQRECO/' % (BaseTestbeamDir),
                                            'RawTimingDAQFileNameFormat' : 'converted_run', ##### run_scope<run>.root 

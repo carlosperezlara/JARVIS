@@ -22,7 +22,7 @@ horizontalWindow = 50 #ns
 
 #trigCh = "EX"
 trigCh = "LINE" 
-trig = 0.15 #0.41 #0.15 # V
+trig = 0.41 #0.41 #0.15 # V
 slope = "POS"
 
 vScale1 = 0.05  
