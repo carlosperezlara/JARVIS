@@ -55,7 +55,7 @@ def ConversionCMDs(RunNumber, Digitizer, MyKey, Debug, condor):
     if RunList != None:
         
         for run in RunList: 
-
+            print(am.TwoStageRecoDigitizers[Digitizer]['ConversionCMD'] + str(run))
             ConversionCMDList.append(am.TwoStageRecoDigitizers[Digitizer]['ConversionCMD'] + str(run))
             ResultFileLocationList.append(am.TwoStageRecoDigitizers[Digitizer]['RawTimingDAQLocalPath'] + am.TwoStageRecoDigitizers[Digitizer]['RawTimingDAQFileNameFormat'] + str(run) + '.root')
         return ConversionCMDList, ResultFileLocationList, RunList, FieldIDList
