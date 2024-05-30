@@ -60,12 +60,12 @@ default_run_info["xrdcpRawLecroyScope"] = not_applicable
 default_run_info["ConversionLecroyScope"] = not_applicable
 default_run_info["TimingDAQLecroyScope"] = not_applicable
 default_run_info["TimingDAQNoTracksLecroyScope"] = not_applicable
-
-##VME defaults
+#VME defaults
 default_run_info["TimingDAQVME"] = not_applicable
+#TOFHIR defaults
 default_run_info["xrdcpRawTOFHIR"] = not_applicable
-default_run_info["BTLRecoTOFHIR"] = not_applicable
 default_run_info["BTLRecoNoScopeTOFHIR"] = not_applicable
+default_run_info["BTLRecoTOFHIR"] = not_applicable
 
 
 ############ Initialize progress fields on run table ################
@@ -133,7 +133,7 @@ if IncludesLecroyScope:
 if IncludesVME:
 	print "VME readout Included, but is controlled by OTSDAQ"
 if IncludesTOFHIR:
-	print "TOFHIR readout Included, but is controlled by OTSDAQ"
+	print "TOFHIR readout Included"
 print ""
 print ""
 print "*********************************************************************"
@@ -211,23 +211,21 @@ while (AutoPilotStatus == 1 and iteration < maxRuns):
 	print "\nRun %i started at %s" % (RunNumber,StartTime)
 	print ""
 
-	# Get desired TOFHIR configuration from AirTable and construct corresponding config file, copy into TOFHIR PC via the TOFHIRMount directory
+	# Get desired TOFHIR configuration from AirTable and construct corresponding config file
 	if IncludesTOFHIR:
-		TOFHIRConfigFile = open("/home/daq/TOFHIRMount/raw/runSettingConfig_run" + str(RunNumber) + ".txt","w") 
-		TOFHIRConfigFile.write(str(TOFHIRConfigDict["VTH1"]) + " " 
-							 + str(TOFHIRConfigDict["VTH2"]) + " " 
-							 + str(TOFHIRConfigDict["VTHE"]) + " " 
-							 + str(TOFHIRConfigDict["OV"]) + " "
-							 + str(TOFHIRConfigDict["DELAYE"])
-							)
+		TOFHIRConfigFile = open("/home/daq/2024_05_FNAL_ETL/TOFHIRConfigFile/runTOFHIRSettingConfig_run" + str(RunNumber) + ".txt","w") 
+		TOFHIRConfigFile.write(str(TOFHIRConfigDict["Offset"]) + " " + str(TOFHIRConfigDict["Bias"]) + " ")
 		TOFHIRConfigFile.close()
 		print("Writing TOFHIR Config to : " + "/home/daq/TOFHIRMount/raw/runSettingConfig_run" + str(RunNumber) + ".txt")
-		print("Settings: ith1 = " + str(TOFHIRConfigDict["VTH1"]) 
-			+ " ith2 = "          + str(TOFHIRConfigDict["VTH2"])
-			+ " ithe = "          + str(TOFHIRConfigDict["VTHE"])
-			+ " ov = "            + str(TOFHIRConfigDict["OV"])
-			+ " delaE = "         + str(TOFHIRConfigDict["DELAYE"])
+		print("Settings: Offset = " + str(TOFHIRConfigDict["Offset"]) 
+                      + " Bias = "        + str(TOFHIRConfigDict["Bias"])
 			)
+                
+                #Send start command to TOFHIR
+                print("\n\n    Sending start command to TOFHIR\n")
+                session = am.subprocess.Popen(['ssh', 'daq@timingdaq03', 'echo "start" > /home/daq/ETROC2_Test_Stand/module_test_sw/ETROC_Status.txt'], stdout=am.subprocess.PIPE)
+                session = am.subprocess.Popen(['ssh', 'daq@timingdaq03', '. /home/daq/ETROC2_Test_Stand/module_test_sw/daq_ETROC.sh {}'.format(RunNumber)],stdout=am.subprocess.PIPE)
+                time.sleep(1)
 
 	#Start the otsdaq run here (scopes already started)
 	if not Debug and IsTelescope: tp.start_ots(RunNumber,False)
@@ -276,8 +274,12 @@ while (AutoPilotStatus == 1 and iteration < maxRuns):
 		print "Waiting for Lecroy scope to finish"
 		WaitForLecroyScopeFinishAcquisition()
 		scope_finished=time.time()
-		print "Lecroy scope finished"
+                print "Lecroy scope finished"
 
+                if IncludesTOFHIR:
+                        print "Send stop command to TOFHIR"
+                        session = am.subprocess.Popen(['ssh', 'daq@timingdaq03', 'echo "stop" > /home/daq/ETROC2_Test_Stand/module_test_sw/ETROC_Status.txt'], stdout=am.subprocess.PIPE)
+                        time.sleep(1)
 		
 	if IncludesKeySightScope: 
 		print "Waiting for TClock stop time (%0.1f)"%StopSeconds

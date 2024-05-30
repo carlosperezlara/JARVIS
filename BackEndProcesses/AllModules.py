@@ -57,11 +57,11 @@ QueryFilePath ="../QueryLog.txt" # Don't care about this
 #############################################################
 
 ############# Tracking Paths ##############
-HyperscriptPath = '/home/otsdaq/CMSTiming/HyperScriptBTL2023.sh'
-RulinuxSSH = 'otsdaq@teddy01.dhcp.fnal.gov'#'otsdaq@rulinux04.dhcp.fnal.gov'
-BaseTrackDirRulinux = '/data/TestBeam/2023_03_March_BTL/'
+HyperscriptPath ='/home/otsdaq/CMSTiming/HyperScript.sh'
+RulinuxSSH = 'otsdaq@teddy01.fnal.gov'#'otsdaq@rulinux04.dhcp.fnal.gov'
+BaseTrackDirRulinux = '/data/TestBeam/2024_05_May_cmstiming/CMSTimingConverted/'
 ResultTrackFileNameBeforeRunNumber = 'Run' ###########'Run%d_CMSTiming_converted.root'
-ResultTrackFileNameAfterRunNumber = '_CMSTiming_converted.root' 
+ResultTrackFileNameAfterRunNumber = '_converted.root'
 ResultTrackFileNameAfterRunNumberSlow = '_CMSTiming_SlowTriggerStream_converted.root'
 ResultTrackFileNameAfterRunNumberFast = '_CMSTiming_FastTriggerStream_converted.root'
 
@@ -108,9 +108,10 @@ ScopeCommFileName = '%sAcquisition/ScopeStatus.txt' % ScopeControlDir
 
 ################ Lecroy Scope Control from AutoPilot Paths ################
 LecroyScopeControlDir = '%sScopeHandler/Lecroy/' % BaseTestbeamDir
-LecroyScopeStateFileName = '%s/JARVIS/BackEndProcesses/RunLog.txt' % BaseTestbeamDir
-LecroyScopeCommFileName = '%s/JARVIS/BackEndProcesses/ScopeStatus.txt' % BaseTestbeamDir
-
+#LecroyScopeStateFileName = '%s/JARVIS/BackEndProcesses/RunLog.txt' % BaseTestbeamDir
+LecroyScopeStateFileName = '%sAcquisition/RunLog.txt' % LecroyScopeControlDir
+#LecroyScopeCommFileName = '%s/JARVIS/BackEndProcesses/ScopeStatus.txt' % BaseTestbeamDir
+LecroyScopeCommFileName = '%sAcquisition/ScopeStatus.txt' % LecroyScopeControlDir
 
 ConfigFileBasePath = '%sconfig/' % TimingDAQDir
 TOFHIRConfigFileBasePath = '/home/daq/2019_04_April_CMSTiming/TOFHIR/ConfigArchive/'

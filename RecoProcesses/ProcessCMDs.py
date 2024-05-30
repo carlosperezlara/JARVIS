@@ -20,8 +20,9 @@ def TrackingCMDs(RunNumber, MyKey, Debug):
     if RunList != None:
         
         for run in RunList: 
-            TrackingCMDList.append('. %s %d' % (am.HyperscriptPath, run)) #####Modify Hyperscript to scp the result file on the local machine
+            TrackingCMDList.append('. %s %d %s' % (am.HyperscriptPath, run, am.BaseDirName)) #####Modify Hyperscript to scp the result file on the local machine
             ResultFileLocationList.append(am.BaseTrackDirLocal + am.ResultTrackFileNameBeforeRunNumber + str(run) + am.ResultTrackFileNameAfterRunNumberFast)
+        print(TrackingCMDList)
         return TrackingCMDList, ResultFileLocationList, RunList, FieldIDList
  
     else:
