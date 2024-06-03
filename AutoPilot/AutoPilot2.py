@@ -225,7 +225,7 @@ while (AutoPilotStatus == 1 and iteration < maxRuns):
                 print("\n\n    Sending start command to TOFHIR\n")
                 session = am.subprocess.Popen(['ssh', 'daq@timingdaq03', 'echo "start" > /home/daq/ETROC2_Test_Stand/module_test_sw/ETROC_Status.txt'], stdout=am.subprocess.PIPE)
                 session = am.subprocess.Popen(['ssh', 'daq@timingdaq03', '. /home/daq/ETROC2_Test_Stand/module_test_sw/daq_ETROC.sh {}'.format(RunNumber)],stdout=am.subprocess.PIPE)
-                time.sleep(1)
+                time.sleep(5)
 
 	#Start the otsdaq run here (scopes already started)
 	if not Debug and IsTelescope: tp.start_ots(RunNumber,False)
@@ -275,11 +275,6 @@ while (AutoPilotStatus == 1 and iteration < maxRuns):
 		WaitForLecroyScopeFinishAcquisition()
 		scope_finished=time.time()
                 print "Lecroy scope finished"
-
-                if IncludesTOFHIR:
-                        print "Send stop command to TOFHIR"
-                        session = am.subprocess.Popen(['ssh', 'daq@timingdaq03', 'echo "stop" > /home/daq/ETROC2_Test_Stand/module_test_sw/ETROC_Status.txt'], stdout=am.subprocess.PIPE)
-                        time.sleep(1)
 		
 	if IncludesKeySightScope: 
 		print "Waiting for TClock stop time (%0.1f)"%StopSeconds
@@ -290,6 +285,11 @@ while (AutoPilotStatus == 1 and iteration < maxRuns):
 
 
 	if not Debug and IsTelescope: tp.stop_ots(False)
+
+        if IncludesTOFHIR:
+                time.sleep(3)
+                print "Send stop command to TOFHIR"
+                session = am.subprocess.Popen(['ssh', 'daq@timingdaq03', 'echo "stop" > /home/daq/ETROC2_Test_Stand/module_test_sw/ETROC_Status.txt'], stdout=am.subprocess.PIPE)
 
 	print ("%0.1f seconds between scope finish and TClock time" % (tclock_finished-scope_finished))
 	StopTime = datetime.now()

@@ -9,7 +9,7 @@ Configuration = 122   ##not used except in BTL mode
 LongAcquisitionMode = False #True
 
 
-numEvents = 10 #28000 ## not used in Long mode #Max with math mode off is 32000 for Lecroy
+numEvents = 10000 #28000 ## not used in Long mode #Max with math mode off is 32000 for Lecroy
 numPoints = 25 ##MSa, only used in Long mode
 sampleRate = 10 #GSa/s
 horizontalWindow = 50 #ns
@@ -31,14 +31,14 @@ vScale3 = 0.05
 vScale4 = 0.05
 vScale5 = 0.05  
 vScale6 = 0.05
-vScale7 = 0.05 
+vScale7 = 0.5 
 vScale8 = 0.10
 
 vPos1 = 3
 vPos2 = 3
 vPos3 = 3
 
-timeoffset = 75 #100 ##75 scintillator trigger
+timeoffset = 250 #100 ##75 scintillator trigger
 
 #2022 values  #105 ns (50D) 30 ns (SiPM self trigger) 85 (Lorenzo scin) 105 (SiPM telescope trigger)
 
